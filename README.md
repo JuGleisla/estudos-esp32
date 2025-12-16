@@ -75,4 +75,43 @@ void loop() {
 
 }
 ```
-> **Observação:** Caso o "Serial.begin()" esteja dando erro, verifique a velocidade no canto inferior direito que está pré selecionada e ajuste com a do código. 
+> **Observação:** Caso o "Serial.begin()" esteja dando erro, verifique a velocidade no canto inferior direito que está pré selecionada e ajuste com a do código.
+
+## Conectando o ESP32 via Wi-Fi
+
+```cpp
+#include <WiFi.h> // Importando a biblioteca Wi-Fi
+
+const char* rede = "";// Nome da rede de Wi-Fi  
+const char* senha = ""; // Senha da rede Wi-Fi 
+
+void setup() {
+
+  Serial.begin(9600);
+  delay(1000);
+  
+  Serial.println();
+  Serial.println("Iniciando sua conexão com a rede Wi-Fi..."); 
+
+  WiFi.begin(rede, senha);
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("");
+  Serial.println("Wi-Fi conectado com sucesso!");
+  Serial.print("Endereço IP: ");
+  Serial.println(WiFi.localIP());
+
+}
+
+void loop() {
+  
+}
+```
+
+
+
+
